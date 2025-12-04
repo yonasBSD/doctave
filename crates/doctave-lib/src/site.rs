@@ -103,6 +103,7 @@ pub trait SiteBackend: Send + Sync {
     fn reset(&self) -> Result<()>;
     /// Renders the loaded documentation into memory
     fn build(&self) -> Result<()>;
+    #[allow(dead_code)]
     fn list_files(&self) -> Vec<PathBuf>;
 }
 

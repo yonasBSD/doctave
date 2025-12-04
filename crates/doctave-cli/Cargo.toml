@@ -1,0 +1,15 @@
+[package]
+name = "doctave"
+version = "0.4.2"
+authors = ["Niklas Begley <nik@doctave.com>"]
+edition = "2024"
+
+[dependencies]
+bunt = "0.2.9"
+clap = { version = "4.5.53", features = ["derive"] }
+doctave-lib = { path = "../doctave-lib" }
+
+# Binary target configuration
+[[bin]]
+name = "doctave"
+path = "src/main.rs"

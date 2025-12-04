@@ -123,7 +123,7 @@ impl InitCommand {
                 )
             })?;
 
-            file.write(include_str!("../templates/starter_readme.md").as_bytes())
+            file.write(include_str!("../../../templates/starter_readme.md").as_bytes())
                 .map_err(|e| Error::io(e, "Could not write to README.md"))?;
 
             let doc_root_name = &self.doc_root_name();
@@ -153,7 +153,7 @@ impl InitCommand {
                 )
             })?;
 
-            file.write(include_str!("../templates/starter_examples.md").as_bytes())
+            file.write(include_str!("../../../templates/starter_examples.md").as_bytes())
                 .map_err(|e| Error::io(e, "Could not write to README.md"))?;
 
             let doc_root_name = &self.doc_root_name();

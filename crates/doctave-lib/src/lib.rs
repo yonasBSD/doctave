@@ -59,22 +59,22 @@ lazy_static! {
         let mut handlebars = Handlebars::new();
 
         handlebars
-            .register_template_string("page", include_str!("../templates/page.html"))
+            .register_template_string("page", include_str!("../../../templates/page.html"))
             .unwrap();
         handlebars
-            .register_template_string("navigation", include_str!("../templates/navigation.html"))
+            .register_template_string("navigation", include_str!("../../../templates/navigation.html"))
             .unwrap();
         handlebars
-            .register_template_string("search", include_str!("../templates/search.html"))
+            .register_template_string("search", include_str!("../../../templates/search.html"))
             .unwrap();
         handlebars
             .register_template_string(
                 "nested_navigation",
-                include_str!("../templates/nested_navigation.html"),
+                include_str!("../../../templates/nested_navigation.html"),
             )
             .unwrap();
         handlebars
-            .register_template_string("style.css", include_str!("../templates/style.css"))
+            .register_template_string("style.css", include_str!("../../../templates/style.css"))
             .unwrap();
 
         handlebars
