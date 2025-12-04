@@ -2,12 +2,12 @@ name: Lint & Format
 
 on:
   push:
-    branches: [ master ]
   pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
   lint:
+    name: Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -24,6 +24,7 @@ jobs:
         run: cargo clippy --all-targets --all-features -- -D warnings
 
   format:
+    name: Formatting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
