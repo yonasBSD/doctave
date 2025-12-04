@@ -78,7 +78,7 @@ fn handle_websocket(stream: std::net::TcpStream, mut listener: BusReader<()>) {
         loop {
             if let Ok(_msg) = listener.recv_timeout(Duration::from_millis(1000)) {
                 websocket
-                    .write_message(
+                    .send(
                         r#"
                         {
                             "command": "reload",
@@ -91,7 +91,7 @@ fn handle_websocket(stream: std::net::TcpStream, mut listener: BusReader<()>) {
                     .map_err(|e| map_tungstenite_error(e))?;
             } else {
                 websocket
-                    .write_message(tungstenite::Message::Ping(Vec::new()))
+                    .send(tungstenite::Message::Ping(Vec::new().into()))
                     .map_err(|e| map_tungstenite_error(e))?;
             }
         }
@@ -109,7 +109,7 @@ fn handle_websocket(stream: std::net::TcpStream, mut listener: BusReader<()>) {
 }
 
 fn livereload_handshake(websocket: &mut WebSocket<std::net::TcpStream>) -> io::Result<()> {
-    let msg = websocket.read_message().map_err(map_tungstenite_error)?;
+    let msg = websocket.read().map_err(map_tungstenite_error)?;
 
     if msg.is_text() {
         let parsed: serde_json::Value = serde_json::from_str(msg.to_text().unwrap())?;
@@ -127,7 +127,7 @@ fn livereload_handshake(websocket: &mut WebSocket<std::net::TcpStream>) -> io::R
         "#;
 
         websocket
-            .write_message(response.into())
+            .send(response.into())
             .map_err(map_tungstenite_error)
     } else {
         Err(io::Error::new(io::ErrorKind::Other, "Invalid handshake"))

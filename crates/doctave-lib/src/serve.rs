@@ -9,7 +9,7 @@ use crate::config::Config;
 use crate::livereload_server::LivereloadServer;
 use crate::preview_server::PreviewServer;
 use crate::site::Site;
-use crate::watcher::Watcher;
+use crate::watcher::FileWatcher;
 use crate::Result;
 
 pub struct ServeCommand {}
@@ -43,10 +43,10 @@ impl ServeCommand {
 
         let duration = start.elapsed();
 
-        // Watcher ------------------------------------
+        // FileWatcher ------------------------------------
 
         let (watch_snd, watch_rcv) = bounded(128);
-        let watcher = Watcher::new(vec![config.docs_dir().to_path_buf()], watch_snd);
+        let watcher = FileWatcher::new(vec![config.docs_dir().to_path_buf()], watch_snd);
         thread::Builder::new()
             .name("watcher".into())
             .spawn(move || watcher.run())

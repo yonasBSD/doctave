@@ -1,62 +1,73 @@
 use std::path::PathBuf;
-use std::sync::mpsc::channel;
-use std::time::Duration;
-
 use crossbeam_channel::Sender;
-use notify::{watcher, DebouncedEvent, RecursiveMode, Watcher as NotifyWatcher};
+use notify::{Config, Event, EventKind, RecommendedWatcher, RecursiveMode, Watcher, event::ModifyKind};
 
-pub struct Watcher {
+pub struct FileWatcher {
     paths: Vec<PathBuf>,
     channel: Sender<(PathBuf, String)>,
 }
 
-impl Watcher {
+impl FileWatcher {
     pub fn new(paths: Vec<PathBuf>, channel: Sender<(PathBuf, String)>) -> Self {
-        Watcher { paths, channel }
+        FileWatcher { paths, channel }
     }
 
-    pub fn run(self) {
-        let (tx, rx) = channel();
-        let mut watcher = watcher(tx, Duration::from_secs(1)).unwrap();
+    pub fn run(self) -> notify::Result<()> {
+        let tx = self.channel.clone();
+
+        let mut watcher: RecommendedWatcher = RecommendedWatcher::new(
+            move |res: notify::Result<Event>| {
+                match res {
+                    Ok(event) => {
+                        // Handle events
+                        match &event.kind {
+                            EventKind::Create(_) => {
+                                for path in &event.paths {
+                                    let _ = tx.send((path.clone(), "created".to_string()));
+                                }
+                            }
+                            EventKind::Modify(ModifyKind::Data(_))
+                            | EventKind::Modify(ModifyKind::Metadata(_)) => {
+                                for path in &event.paths {
+                                    let _ = tx.send((path.clone(), "updated".to_string()));
+                                }
+                            }
+                            EventKind::Remove(_) => {
+                                for path in &event.paths {
+                                    let _ = tx.send((path.clone(), "deleted".to_string()));
+                                }
+                            }
+                            EventKind::Modify(ModifyKind::Name(_)) => {
+                                // Rename events: usually two paths (old, new)
+                                if event.paths.len() == 2 {
+                                    let old = &event.paths[0];
+                                    let new = &event.paths[1];
+                                    let _ = tx.send((
+                                        old.clone(),
+                                        format!("renamed to {}", new.display()),
+                                    ));
+                                }
+                            }
+                            _ => {}
+                        }
+                    }
+                    Err(e) => {
+                        eprintln!("watch error: {:?}", e);
+                    }
+                }
+            },
+            Config::default(),
+        )?;
 
         for path in &self.paths {
             if path.exists() {
-                watcher.watch(path, RecursiveMode::Recursive).unwrap();
+                watcher.watch(path, RecursiveMode::Recursive)?;
             }
         }
 
+        // Keep thread alive
         loop {
-            let should_continue = match rx.recv() {
-                Ok(event) => match event {
-                    DebouncedEvent::NoticeWrite(_) => true,
-                    DebouncedEvent::NoticeRemove(_) => true,
-                    DebouncedEvent::Create(p) => self.notify(p, "created"),
-                    DebouncedEvent::Write(p) => self.notify(p, "updated"),
-                    DebouncedEvent::Chmod(p) => self.notify(p, "updated"),
-                    DebouncedEvent::Remove(p) => self.notify(p, "deleted"),
-                    DebouncedEvent::Rename(p, new) => {
-                        self.notify(p, format!("renamed to {}", new.display()))
-                    }
-                    _ => true,
-                },
-                Err(e) => {
-                    println!("watch error: {:?}", e);
-                    true
-                }
-            };
-
-            if !should_continue {
-                break;
-            }
+            std::thread::park();
         }
-    }
-
-    /// Notifies the listening end (Main thread) that there the paths
-    /// being monitored have updated.
-    ///
-    /// Returns false if the notification could not be send, meaning
-    /// the main thread has gone away.
-    fn notify<S: Into<String>>(&self, path: PathBuf, msg: S) -> bool {
-        self.channel.send((path, msg.into())).is_ok()
     }
 }
