@@ -5,28 +5,28 @@ authors = ["Niklas Begley <nik@doctave.com>"]
 edition = "2018"
 
 [dependencies]
-clap = "2.33.3"
-walkdir = "2.3.1"
+clap = "2.34.0"
+walkdir = "2.5.0"
 doctave-markdown = { git = "https://github.com/Doctave/doctave-markdown", tag = "0.9.0" }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.8"
-handlebars = "3.4.0"
-lazy_static = "1.4.0"
+handlebars = "3.5.5"
+lazy_static = "1.5.0"
 tiny_http = "0.6"
 ascii = "0.8"
 http = "0.2"
-notify = "4.0.12"
+notify = "4.0.18"
 tungstenite = { version = "0.11", default-features = false }
 serde_json = { version = "1.0", default-features = false }
 crossbeam-channel = "0.4"
 elasticlunr-rs = { version = "2.3", default-features = false }
-bunt = "0.2.3"
+bunt = "0.2.9"
 scoped_threadpool = "0.1"
-bus = "2.2.3"
-rayon = "1.4"
+bus = "2.4.1"
+rayon = "1.11"
 colorsys = "0.5.7"
-alphanumeric-sort = "1.4.0"
-include_dir = "0.7.2"
+alphanumeric-sort = "1.5.4"
+include_dir = "0.7.4"
 
 [dev-dependencies]
-indoc = "1.0.2"
+indoc = "1.0.9"
