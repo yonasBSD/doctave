@@ -1,8 +1,8 @@
 [![CI Status](https://github.com/Doctave/doctave/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Doctave/doctave/actions)
-[![Docs](./docs/_include/assets/doctave-badge.png)](https://cli.doctave.com/)
+[![Docs](./crates/doctave-lib/docs/_include/assets/doctave-badge.png)](https://cli.doctave.com/)
 
 
-![Doctave](./docs/_include/assets/doctave-logo-wide.png)
+![Doctave](./crates/doctave-lib/docs/_include/assets/doctave-logo-wide.png)
 
 Doctave is an opinionated documentation site generator that converts your Markdown files into
 a beautiful documentation site with minimal effort.
@@ -44,8 +44,8 @@ with Doctave's own color scheme, and another customized color scheme.
 
 Light                                              | Dark                                                    |
 ---------------------------------------------------|---------------------------------------------------------|
-![Example 1](./docs/_include/assets/example-1.png) | ![Example 2](./docs/_include/assets/example-1-dark.png) |
-![Example 2](./docs/_include/assets/example-2.png) | ![Example 2](./docs/_include/assets/example-2-dark.png) |
+![Example 1](./crates/doctave-lib/docs/_include/assets/example-1.png) | ![Example 2](./crates/doctave-lib/docs/_include/assets/example-1-dark.png) |
+![Example 2](./crates/doctave-lib/docs/_include/assets/example-2.png) | ![Example 2](./crates/doctave-lib/docs/_include/assets/example-2-dark.png) |
 
 ## Installation
 
