@@ -1,2 +1,2 @@
-src/assets/*.min.js
-src/assets/prism-*.css
+crates/doctave-lib/src/assets/*.min.js
+crates/doctave-lib/src/assets/prism-*.css
