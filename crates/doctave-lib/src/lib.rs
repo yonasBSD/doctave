@@ -1,4 +1,4 @@
-#[deny(clippy::all)]
+#![deny(clippy::all)]
 #[cfg(test)]
 #[macro_use]
 extern crate indoc;

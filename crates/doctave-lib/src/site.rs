@@ -351,7 +351,7 @@ mod test {
 
         let site = InMemorySite::new(config);
 
-        site.add_file(&path, content.into()).unwrap();
+        site.add_file(path, content.into()).unwrap();
 
         let uri = Path::new("index.html");
 
