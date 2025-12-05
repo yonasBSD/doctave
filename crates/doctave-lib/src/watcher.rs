@@ -1,6 +1,8 @@
-use std::path::PathBuf;
 use crossbeam_channel::Sender;
-use notify::{Config, Event, EventKind, RecommendedWatcher, RecursiveMode, Watcher, event::ModifyKind};
+use notify::{
+    Config, Event, EventKind, RecommendedWatcher, RecursiveMode, Watcher, event::ModifyKind,
+};
+use std::path::PathBuf;
 
 pub struct FileWatcher {
     paths: Vec<PathBuf>,

@@ -2,9 +2,9 @@ use std::time::Instant;
 
 use bunt::termcolor::{ColorChoice, StandardStream};
 
+use crate::Result;
 use crate::config::Config;
 use crate::site::{BuildMode, Site};
-use crate::Result;
 
 pub struct BuildCommand {}
 

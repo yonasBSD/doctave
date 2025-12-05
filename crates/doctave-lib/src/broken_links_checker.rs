@@ -1,7 +1,7 @@
+use crate::Directory;
 use crate::config::Config;
 use crate::preview_server::resolve_file;
 use crate::site::{Site, SiteBackend};
-use crate::Directory;
 use crate::{Error, Result};
 
 use std::path::{Path, PathBuf};
@@ -48,8 +48,8 @@ fn matches_a_target<B: SiteBackend>(path: &Path, site: &Site<B>) -> bool {
 #[cfg(test)]
 mod test {
     use super::*;
-    use crate::config::Config;
     use crate::Document;
+    use crate::config::Config;
     use std::collections::BTreeMap;
 
     fn page(path: &str, name: &str, content: &str) -> Document {

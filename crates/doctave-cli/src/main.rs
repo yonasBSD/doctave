@@ -51,7 +51,10 @@ fn main() {
 
     let result = match &cli.command {
         Some(Commands::Init { docs_dir }) => init(&cli, docs_dir.clone()),
-        Some(Commands::Build { release, allow_failed_checks }) => build(&cli, *release, *allow_failed_checks),
+        Some(Commands::Build {
+            release,
+            allow_failed_checks,
+        }) => build(&cli, *release, *allow_failed_checks),
         Some(Commands::Serve { port }) => serve(&cli, *port),
         None => Ok(()),
     };

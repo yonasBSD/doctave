@@ -36,7 +36,7 @@ pub use site::BuildMode;
 
 pub use doctave_markdown::{Heading, Markdown};
 use handlebars::Handlebars;
-use include_dir::{include_dir, Dir};
+use include_dir::{Dir, include_dir};
 use navigation::Link;
 
 static APP_JS: &str = include_str!("assets/app.js");

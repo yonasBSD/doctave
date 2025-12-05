@@ -1,8 +1,8 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
-use colorsys::prelude::*;
 use colorsys::Rgb;
+use colorsys::prelude::*;
 use http::Uri;
 use serde::Deserialize;
 

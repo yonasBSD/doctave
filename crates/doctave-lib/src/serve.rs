@@ -5,12 +5,12 @@ use std::time::Instant;
 use bunt::termcolor::{ColorChoice, StandardStream};
 use crossbeam_channel::bounded;
 
+use crate::Result;
 use crate::config::Config;
 use crate::livereload_server::LivereloadServer;
 use crate::preview_server::PreviewServer;
 use crate::site::Site;
 use crate::watcher::FileWatcher;
-use crate::Result;
 
 pub struct ServeCommand {}
 

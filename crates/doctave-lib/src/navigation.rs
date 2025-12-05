@@ -1,5 +1,5 @@
-use crate::config::{Config, DirIncludeRule, NavRule};
 use crate::Directory;
+use crate::config::{Config, DirIncludeRule, NavRule};
 use serde::Serialize;
 
 use std::ffi::OsStr;

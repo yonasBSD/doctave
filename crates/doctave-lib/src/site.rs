@@ -3,11 +3,11 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::RwLock;
 
+use crate::Directory;
 use crate::broken_links_checker;
 use crate::config::Config;
 use crate::docs_finder;
 use crate::site_generator::SiteGenerator;
-use crate::Directory;
 use crate::{Error, Result};
 
 #[derive(Debug, Clone, Copy, PartialEq)]

@@ -8,10 +8,10 @@ use rayon::prelude::*;
 use serde::Serialize;
 use walkdir::WalkDir;
 
+use crate::Directory;
 use crate::config::Config;
 use crate::navigation::{Link, Navigation};
 use crate::site::{BuildMode, SiteBackend};
-use crate::Directory;
 use crate::{Error, Result};
 
 static INCLUDE_DIR: &str = "_include";
