@@ -21,7 +21,7 @@ jobs:
           override: true
 
       - name: Run cargo clippy
-        run: cargo clippy --workspace --all-targets --all-features -- -D warnings --message-format=json > clippy.json
+        run: cargo clippy --workspace --all-targets --all-features --message-format=json -- -D warnings > clippy.json
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v2
@@ -71,14 +71,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Rust nightly
-        uses: dtolnay/rust-toolchain@nightly
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
 
       - name: Install cargo-udeps
-        run: cargo install cargo-udeps
+        run: cargo binstall -y cargo-udeps
 
       - name: Run cargo-udeps
-        run: cargo +nightly udeps --workspace --all-targets
+        run: cargo udeps --workspace --all-targets
 
   conventional-commits:
     name: Conventional Commits
@@ -90,8 +96,17 @@ jobs:
         with:
           fetch-depth: 0   # full history needed
 
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
       - name: Install Cocogitto
-        run: cargo install cocogitto
+        run: cargo binstall -y cocogitto
 
       - name: Run Conventional Commits check
         id: cogcheck
