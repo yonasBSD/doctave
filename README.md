@@ -2,6 +2,7 @@
 
 ![Linting](https://github.com/yonasBSD/doctave/actions/workflows/linting.yaml/badge.svg)
 ![Testing](https://github.com/yonasBSD/doctave/actions/workflows/testing.yaml/badge.svg)
+![Coverage](assets/coverage.svg)
 ![Packaging](https://github.com/yonasBSD/doctave/actions/workflows/release.yaml/badge.svg)
 
 ![Security Audit](https://github.com/yonasBSD/doctave/actions/workflows/security.yaml/badge.svg)
