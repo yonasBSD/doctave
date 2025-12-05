@@ -1,5 +1,19 @@
-[![CI Status](https://github.com/Doctave/doctave/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Doctave/doctave/actions)
 [![Docs](./crates/doctave-lib/docs/_include/assets/doctave-badge.png)](https://cli.doctave.com/)
+
+![Linting](https://github.com/yonasBSD/doctave/actions/workflows/linting.yaml/badge.svg)
+![Testing](https://github.com/yonasBSD/doctave/actions/workflows/testing.yaml/badge.svg)
+![Packaging](https://github.com/yonasBSD/doctave/actions/workflows/release.yaml/badge.svg)
+
+![Security Audit](https://github.com/yonasBSD/doctave/actions/workflows/security.yaml/badge.svg)
+![Scorecard Audit](https://github.com/yonasBSD/doctave/actions/workflows/scorecard.yaml/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yonasBSD_doctave&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yonasBSD_doctave)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yonasBSD_doctave&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=yonasBSD_doctave)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=yonasBSD_doctave&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=yonasBSD_doctave)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/yonasBSD/doctave)
+[![Dependency Status](https://deps.rs/repo/github/yonasBSD/doctave/status.svg)](https://deps.rs/repo/github/yonasBSD/doctave)
+[![GitHub Release](https://img.shields.io/github/release/yonasBSD/doctave.svg)](https://github.com/yonasBSD/doctave/releases/latest)
+[![License](https://img.shields.io/github/license/yonasBSD/doctave.svg)](https://github.com/yonasBSD/doctave/blob/main/LICENSE)
 
 
 ![Doctave](./crates/doctave-lib/docs/_include/assets/doctave-logo-wide.png)
