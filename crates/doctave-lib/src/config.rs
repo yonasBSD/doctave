@@ -66,10 +66,7 @@ impl DoctaveYaml {
 
         // Validate navigation paths exist
         // Validate navigation wildcards recursively
-        fn validate_level(
-            nav: &Navigation,
-            project_root: &Path,
-        ) -> Result<()> {
+        fn validate_level(nav: &Navigation, project_root: &Path) -> Result<()> {
             if !project_root.join(&nav.path).exists() {
                 return Err(Error::new(format!(
                     "Could not find file specified in navigation at {}",
@@ -134,7 +131,6 @@ impl DoctaveYaml {
             Some(docs_dir) => docs_dir.clone(),
             None => "docs".to_string(),
         };
-
 
         project_root.join(to_join)
     }
@@ -283,10 +279,7 @@ impl Config {
             docs_dir: doctave_yaml.docs_dir(project_root),
             base_path: doctave_yaml.base_path.unwrap_or(String::from("/")),
             title: doctave_yaml.title,
-            colors: doctave_yaml
-                .colors
-                .map(|c| c.into())
-                .unwrap_or_default(),
+            colors: doctave_yaml.colors.map(|c| c.into()).unwrap_or_default(),
             logo: doctave_yaml
                 .logo
                 .map(|p| Link::path_to_uri_with_extension(&p))

@@ -45,7 +45,9 @@ impl BuildCommand {
 
             let dead_links_result = site.check_dead_links();
 
-            if let Err(ref e) = dead_links_result && config.allow_failed_checks() {
+            if let Err(ref e) = dead_links_result
+                && config.allow_failed_checks()
+            {
                 bunt::writeln!(stdout, "{$bold}{$yellow}WARNING{/$}{/$}")?;
                 bunt::writeln!(stdout, "{}", e)?;
                 Ok(())

@@ -96,8 +96,7 @@ impl Directory {
     }
 
     fn index(&self) -> &Document {
-        self
-            .docs
+        self.docs
             .iter()
             .find(|d| d.original_file_name() == Some(OsStr::new("README.md")))
             .expect("No index file found for directory")
@@ -113,10 +112,7 @@ impl Directory {
                 children: vec![],
             })
             // Filter out the index for each sub-link, but not the default/README file
-            .filter(|l| {
-                l.path != self.index().uri_path()
-                    || (l.path == "/" && include_root_readme)
-            })
+            .filter(|l| l.path != self.index().uri_path() || (l.path == "/" && include_root_readme))
             .collect::<Vec<_>>();
 
         let mut children = self
@@ -179,7 +175,10 @@ impl Document {
         };
 
         let markdown_options = {
-            doctave_markdown::ParseOptions { url_root: base_path.to_owned(), ..Default::default() }
+            doctave_markdown::ParseOptions {
+                url_root: base_path.to_owned(),
+                ..Default::default()
+            }
         };
 
         let markdown = doctave_markdown::parse(frontmatter::without(&raw), Some(markdown_options));

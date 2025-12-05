@@ -63,7 +63,8 @@ fn walk_dir<P: AsRef<Path>>(dir: P, config: &Config) -> Option<Directory> {
 fn generate_missing_indices(dir: &mut Directory, config: &Config) {
     if !dir
         .docs
-        .iter().any(|d| d.original_file_name() == Some(OsStr::new("README.md")))
+        .iter()
+        .any(|d| d.original_file_name() == Some(OsStr::new("README.md")))
     {
         let new_index = generate_missing_index(dir, config);
         dir.docs.push(new_index);

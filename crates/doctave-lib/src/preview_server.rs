@@ -128,10 +128,7 @@ pub fn resolve_file<B: SiteBackend>(path: &Path, site: &Site<B>) -> Option<PathB
 }
 
 fn read_file<B: SiteBackend>(site: &Site<B>, path: &Path) -> Vec<u8> {
-    
-
-    site
-        .backend
+    site.backend
         .read_path(path)
         .expect("Found a file to serve but could not open it")
 }
