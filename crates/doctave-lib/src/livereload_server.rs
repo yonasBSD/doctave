@@ -65,7 +65,7 @@ fn handle_websocket(stream: std::net::TcpStream, mut listener: BusReader<()>) {
     let result = || -> io::Result<()> {
         let mut websocket = tungstenite::accept(stream).map_err(|err| match err {
             HandshakeError::Failure(e) => map_tungstenite_error(e),
-            other => io::Error::new(io::ErrorKind::Other, other),
+            other => io::Error::other(other),
         })?;
 
         if livereload_handshake(&mut websocket).is_err() {
@@ -88,11 +88,11 @@ fn handle_websocket(stream: std::net::TcpStream, mut listener: BusReader<()>) {
                         "#
                         .into(),
                     )
-                    .map_err(|e| map_tungstenite_error(e))?;
+                    .map_err(map_tungstenite_error)?;
             } else {
                 websocket
                     .send(tungstenite::Message::Ping(Vec::new().into()))
-                    .map_err(|e| map_tungstenite_error(e))?;
+                    .map_err(map_tungstenite_error)?;
             }
         }
     };
@@ -115,7 +115,7 @@ fn livereload_handshake(websocket: &mut WebSocket<std::net::TcpStream>) -> io::R
         let parsed: serde_json::Value = serde_json::from_str(msg.to_text().unwrap())?;
 
         if parsed["command"] != "hello" {
-            return Err(io::Error::new(io::ErrorKind::Other, "Invalid handshake"));
+            return Err(io::Error::other("Invalid handshake"));
         }
 
         let response = r#"
@@ -130,13 +130,13 @@ fn livereload_handshake(websocket: &mut WebSocket<std::net::TcpStream>) -> io::R
             .send(response.into())
             .map_err(map_tungstenite_error)
     } else {
-        Err(io::Error::new(io::ErrorKind::Other, "Invalid handshake"))
+        Err(io::Error::other("Invalid handshake"))
     }
 }
 
 fn map_tungstenite_error(error: TungsteniteError) -> io::Error {
     match error {
         TungsteniteError::Io(io_error) => io_error,
-        e => io::Error::new(io::ErrorKind::Other, e),
+        e => io::Error::other(e),
     }
 }

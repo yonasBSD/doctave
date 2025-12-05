@@ -27,7 +27,7 @@ impl<B: SiteBackend> PreviewServer<B> {
     }
 
     pub fn run(self) {
-        let server = Server::http(&self.addr).unwrap();
+        let server = Server::http(self.addr).unwrap();
         let mut pool = scoped_threadpool::Pool::new(16);
 
         {
@@ -62,7 +62,7 @@ fn handle_request<B: SiteBackend>(request: Request, site: &Site<B>) {
 
         let path = PathBuf::from(uri.path());
 
-        match resolve_file(&path, &site)
+        match resolve_file(&path, site)
             .map(|p| (read_file(site, &p), content_type_for(p.extension())))
         {
             Some((data, None)) => request.respond(Response::from_data(data).with_status_code(200)),
@@ -128,12 +128,12 @@ pub fn resolve_file<B: SiteBackend>(path: &Path, site: &Site<B>) -> Option<PathB
 }
 
 fn read_file<B: SiteBackend>(site: &Site<B>, path: &Path) -> Vec<u8> {
-    let content = site
+    
+
+    site
         .backend
         .read_path(path)
-        .expect("Found a file to serve but could not open it");
-
-    content
+        .expect("Found a file to serve but could not open it")
 }
 
 fn content_type_for(extension: Option<&OsStr>) -> Option<&'static str> {

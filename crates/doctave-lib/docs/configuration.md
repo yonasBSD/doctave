@@ -52,7 +52,7 @@ port: 5432
 Tells Doctave to generate all URLs based on a subpath. Use this if you are deploying your site under
 a subdirectory, such as `https://example.com/docs`.
 
-You won't have to change any URLs inside your docs when this value is changed. You can stil
+You won't have to change any URLs inside your docs when this value is changed. You can still
 construct paths to other pages and assets as if the site was served from the root of the URL. E.g.
 if you have a page `docs/deployment/workflow.md`, you can link to it with `/deployment/workflow`,
 without worrying about the base_path.

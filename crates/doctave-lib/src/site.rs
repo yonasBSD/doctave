@@ -85,7 +85,7 @@ impl<B: SiteBackend> Site<B> {
     }
 
     pub fn check_dead_links(&self) -> Result<()> {
-        broken_links_checker::run(&self)
+        broken_links_checker::run(self)
     }
 }
 
@@ -187,7 +187,7 @@ impl SiteBackend for InMemorySite {
 
         let path = path.strip_prefix(self.config.out_dir()).unwrap();
 
-        content.rendered.insert(path.to_owned(), html.into());
+        content.rendered.insert(path.to_owned(), html);
         Ok(())
     }
 
@@ -198,7 +198,7 @@ impl SiteBackend for InMemorySite {
 
     fn read_path(&self, path: &Path) -> Option<Vec<u8>> {
         let content = self.content.read().unwrap();
-        content.rendered.get(path).map(|s| s.clone())
+        content.rendered.get(path).cloned()
     }
 
     fn has_file(&self, path: &Path) -> bool {
@@ -245,7 +245,7 @@ impl DiskBackedSite {
     }
 
     pub fn create_dir(&self) -> Result<()> {
-        fs::create_dir(&self.config.out_dir()).map_err(|e| {
+        fs::create_dir(self.config.out_dir()).map_err(|e| {
             Error::io(
                 e,
                 format!(
@@ -258,7 +258,7 @@ impl DiskBackedSite {
 
     pub fn delete_dir(&self) -> Result<()> {
         if self.config.out_dir().exists() {
-            fs::remove_dir_all(&self.config.out_dir()).map_err(|e| {
+            fs::remove_dir_all(self.config.out_dir()).map_err(|e| {
                 Error::io(
                     e,
                     format!(

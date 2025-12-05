@@ -68,7 +68,6 @@ impl DoctaveYaml {
         // Validate navigation wildcards recursively
         fn validate_level(
             nav: &Navigation,
-            config: &DoctaveYaml,
             project_root: &Path,
         ) -> Result<()> {
             if !project_root.join(&nav.path).exists() {
@@ -91,7 +90,7 @@ impl DoctaveYaml {
                     }
                     NavChildren::List(navs) => {
                         for nav in navs {
-                            validate_level(&nav, config, project_root)?;
+                            validate_level(nav, project_root)?;
                         }
                     }
                 }
@@ -102,7 +101,7 @@ impl DoctaveYaml {
 
         if let Some(navs) = &self.navigation {
             for nav in navs {
-                validate_level(nav, &self, &project_root)?;
+                validate_level(nav, project_root)?;
             }
         }
 
@@ -136,8 +135,8 @@ impl DoctaveYaml {
             None => "docs".to_string(),
         };
 
-        let doc_root_path = project_root.join(to_join);
-        doc_root_path
+
+        project_root.join(to_join)
     }
 }
 #[derive(Debug, Clone, Deserialize)]
@@ -261,7 +260,7 @@ pub struct Config {
 
 impl Config {
     pub fn load(project_root: &Path) -> Result<Self> {
-        let path = DoctaveYaml::find(&project_root)
+        let path = DoctaveYaml::find(project_root)
             .ok_or(Error::new("Could not find doctave.yaml in project"))?;
 
         let yaml =
@@ -287,13 +286,13 @@ impl Config {
             colors: doctave_yaml
                 .colors
                 .map(|c| c.into())
-                .unwrap_or(Colors::default()),
+                .unwrap_or_default(),
             logo: doctave_yaml
                 .logo
                 .map(|p| Link::path_to_uri_with_extension(&p))
                 .map(|p| p.as_str().trim_start_matches("/").to_owned()),
-            navigation: doctave_yaml.navigation.map(|n| NavRule::from_yaml_input(n)),
-            port: doctave_yaml.port.unwrap_or_else(|| 4001),
+            navigation: doctave_yaml.navigation.map(NavRule::from_yaml_input),
+            port: doctave_yaml.port.unwrap_or(4001),
             build_mode: BuildMode::Dev,
         };
 

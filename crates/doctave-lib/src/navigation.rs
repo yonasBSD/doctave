@@ -42,7 +42,7 @@ impl<'a> Navigation<'a> {
 
         for rule in rules {
             let rule = if rule
-                .is_default_readme_rule(&self.config.project_root(), &self.config.docs_dir())
+                .is_default_readme_rule(self.config.project_root(), self.config.docs_dir())
             {
                 // If we're building navigation for the default readme file, we should
                 // use a different path as the rule will contain "/README.md", while the
@@ -54,12 +54,12 @@ impl<'a> Navigation<'a> {
 
             match rule {
                 NavRule::File(path) => links.push(
-                    self.find_matching_link(path, &default)
+                    self.find_matching_link(path, default)
                         .expect("No matching link found"),
                 ),
                 NavRule::Dir(path, dir_rule) => {
                     let mut index_link = self
-                        .find_matching_link(path, &default)
+                        .find_matching_link(path, default)
                         .expect("No matching link found");
 
                     match dir_rule {
@@ -72,7 +72,7 @@ impl<'a> Navigation<'a> {
                         Some(DirIncludeRule::WildCard) => links.push(index_link),
                         // Include only links that match the description
                         Some(DirIncludeRule::Explicit(nested_rules)) => {
-                            let children = self.customize(nested_rules, &default);
+                            let children = self.customize(nested_rules, default);
                             index_link.children = children;
                             links.push(index_link);
                         }
@@ -107,7 +107,7 @@ impl<'a> Navigation<'a> {
                     .collect::<Vec<_>>();
 
                 // _Should_ only be one match, if any
-                return recursive_results.get(0).map(|l| l.clone());
+                recursive_results.first().cloned()
             }
         }
     }
@@ -138,12 +138,11 @@ impl Link {
         // work the same across all platforms.
         let uri_path = tmp
             .components()
-            .into_iter()
             .map(|c| format!("{}", c.as_os_str().to_string_lossy()))
             .collect::<Vec<_>>()
             .join("/");
 
-        format!("{}", uri_path.as_str().trim_start_matches("/"))
+        uri_path.as_str().trim_start_matches("/").to_string()
     }
 
     pub fn path_to_uri_with_extension(path: &Path) -> String {
@@ -160,12 +159,11 @@ impl Link {
         // work the same across all platforms.
         let uri_path = tmp
             .components()
-            .into_iter()
             .map(|c| format!("{}", c.as_os_str().to_string_lossy()))
             .collect::<Vec<_>>()
             .join("/");
 
-        format!("{}", uri_path.as_str().trim_start_matches("/"))
+        uri_path.as_str().trim_start_matches("/").to_string()
     }
 }
 

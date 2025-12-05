@@ -50,5 +50,5 @@ The following links point to pages that do not exist:
 
 ### Limitations
 
-* Only interal links within a Doctave project are checked
+* Only internal links within a Doctave project are checked
 * Anchor tags are not verified

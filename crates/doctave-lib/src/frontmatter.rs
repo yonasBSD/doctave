@@ -4,31 +4,29 @@ pub fn parse(input: &str) -> std::io::Result<BTreeMap<String, String>> {
     let pos = end_pos(input);
 
     if pos > 0 {
-        serde_yaml::from_str(&input[0..pos].trim_end().trim_end_matches('-'))
-            .map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))
+        serde_yaml::from_str(input[0..pos].trim_end().trim_end_matches('-'))
+            .map_err(std::io::Error::other)
     } else {
         Ok(BTreeMap::new())
     }
 }
 
 pub fn end_pos(input: &str) -> usize {
-    if input.starts_with("---\n") {
-        let after_starter_mark = &input[4..];
+    if let Some(after_starter_mark) = input.strip_prefix("---\n") {
         let end_mark = after_starter_mark.find("---\n");
 
-        if end_mark.is_none() {
-            0
+        if let Some(item) = end_mark {
+            item + 8
         } else {
-            end_mark.unwrap() + 8
+            0
         }
-    } else if input.starts_with("---\r\n") {
-        let after_starter_mark = &input[5..];
+    } else if let Some(after_starter_mark) = input.strip_prefix("---\r\n") {
         let end_mark = after_starter_mark.find("---\r\n");
 
-        if end_mark.is_none() {
-            0
+        if let Some(item) = end_mark {
+            item + 10
         } else {
-            end_mark.unwrap() + 10
+            0
         }
     } else {
         0

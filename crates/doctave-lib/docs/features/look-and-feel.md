@@ -32,7 +32,7 @@ There are two steps to showing your logo on your site:
    [here](/features/assets))
 2. Specify the path to your logo in `doctave.yaml`
 
-For exampe, with the following assets:
+For example, with the following assets:
 
 ```
 $ ls docs/_include/assets

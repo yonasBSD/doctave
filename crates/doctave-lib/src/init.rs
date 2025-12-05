@@ -86,7 +86,7 @@ impl InitCommand {
 
     fn create_docs_dir(&mut self) -> Result<()> {
         if self.no_existing_docs_dir() {
-            fs::create_dir(&self.doc_root()).map_err(|e| {
+            fs::create_dir(self.doc_root()).map_err(|e| {
                 Error::io(
                     e,
                     format!(
@@ -147,7 +147,7 @@ impl InitCommand {
                 Error::io(
                     e,
                     format!(
-                        "Could not create examles.md in {}",
+                        "Could not create examples.md in {}",
                         self.doc_root().display()
                     ),
                 )

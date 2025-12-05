@@ -27,7 +27,7 @@ fn walk_dir<P: AsRef<Path>>(dir: P, config: &Config) -> Option<Directory> {
 
     let current_dir: &Path = dir.as_ref();
 
-    for entry in WalkDir::new(&current_dir)
+    for entry in WalkDir::new(current_dir)
         .max_depth(1)
         .into_iter()
         .filter_map(|e| e.ok())
@@ -61,18 +61,16 @@ fn walk_dir<P: AsRef<Path>>(dir: P, config: &Config) -> Option<Directory> {
 }
 
 fn generate_missing_indices(dir: &mut Directory, config: &Config) {
-    if dir
+    if !dir
         .docs
-        .iter()
-        .find(|d| d.original_file_name() == Some(OsStr::new("README.md")))
-        .is_none()
+        .iter().any(|d| d.original_file_name() == Some(OsStr::new("README.md")))
     {
         let new_index = generate_missing_index(dir, config);
         dir.docs.push(new_index);
     }
 
-    for mut child in &mut dir.dirs {
-        generate_missing_indices(&mut child, config);
+    for child in &mut dir.dirs {
+        generate_missing_indices(child, config);
     }
 }
 

@@ -96,7 +96,7 @@ impl Directory {
     }
 
     fn index(&self) -> &Document {
-        &self
+        self
             .docs
             .iter()
             .find(|d| d.original_file_name() == Some(OsStr::new("README.md")))
@@ -115,7 +115,7 @@ impl Directory {
             // Filter out the index for each sub-link, but not the default/README file
             .filter(|l| {
                 l.path != self.index().uri_path()
-                    || (l.path == "/".to_string() && include_root_readme)
+                    || (l.path == "/" && include_root_readme)
             })
             .collect::<Vec<_>>();
 
@@ -179,9 +179,7 @@ impl Document {
         };
 
         let markdown_options = {
-            let mut opts = doctave_markdown::ParseOptions::default();
-            opts.url_root = base_path.to_owned();
-            opts
+            doctave_markdown::ParseOptions { url_root: base_path.to_owned(), ..Default::default() }
         };
 
         let markdown = doctave_markdown::parse(frontmatter::without(&raw), Some(markdown_options));
@@ -214,11 +212,11 @@ impl Document {
     fn html_path(&self) -> PathBuf {
         // TODO(Nik): Refactor this mess to be readable
         match self.rename {
-            None => self.path.with_file_name(&format!(
+            None => self.path.with_file_name(format!(
                 "{}.html",
                 self.path.file_stem().unwrap().to_str().unwrap()
             )),
-            Some(ref rename) => self.path.with_file_name(&format!("{}.html", rename)),
+            Some(ref rename) => self.path.with_file_name(format!("{}.html", rename)),
         }
     }
 

@@ -178,7 +178,7 @@ pub fn refute_output(result: &std::process::Output, needle: &str) {
 
     assert!(
         !stdout.contains(needle) && !stderr.contains(needle),
-        "Found {} in the command output, even though it shoudn't be there: \
+        "Found {} in the command output, even though it shouldn't be there: \
             \n\n------ STDOUT ------\n{}\n------ STDERR --------\n{}\n",
         needle,
         stdout,

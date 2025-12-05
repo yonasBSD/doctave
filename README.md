@@ -42,10 +42,10 @@ a specialized Doctave host, for free for public docs.
 You can customize the color scheme and logo to match your own style. Below are two examples: one
 with Doctave's own color scheme, and another customized color scheme.
 
-Light                                             | Dark                                                    |
---------------------------------------------------|---------------------------------------------------------|
-![Exmple 1](./docs/_include/assets/example-1.png) | ![Example 2](./docs/_include/assets/example-1-dark.png) |
-![Exmple 2](./docs/_include/assets/example-2.png) | ![Example 2](./docs/_include/assets/example-2-dark.png) |
+Light                                              | Dark                                                    |
+---------------------------------------------------|---------------------------------------------------------|
+![Example 1](./docs/_include/assets/example-1.png) | ![Example 2](./docs/_include/assets/example-1-dark.png) |
+![Example 2](./docs/_include/assets/example-2.png) | ![Example 2](./docs/_include/assets/example-2-dark.png) |
 
 ## Installation
 

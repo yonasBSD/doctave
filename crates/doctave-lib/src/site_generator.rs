@@ -20,12 +20,12 @@ static HEAD_FILE: &str = "_head.html";
 pub struct SiteGenerator<'a, T: SiteBackend> {
     config: Config,
     root: Directory,
-    site: Box<&'a T>,
+    site: &'a T,
     timestamp: String,
 }
 
 impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
-    pub fn new(site: &'a T) -> Self {
+    pub fn new(a_site: &'a T) -> Self {
         let start = SystemTime::now();
 
         let since_the_epoch = start
@@ -33,9 +33,9 @@ impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
             .expect("Time went backwards");
 
         SiteGenerator {
-            root: site.root(),
-            site: Box::new(site),
-            config: site.config().clone(),
+            root: a_site.root(),
+            site: a_site,
+            config: a_site.config().clone(),
             timestamp: format!("{}", since_the_epoch.as_secs()),
         }
     }
@@ -227,7 +227,7 @@ impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
             .join("assets")
             .join("doctave-style.css");
 
-        self.site.add_file(&destination, out.into())?;
+        self.site.add_file(&destination, out)?;
 
         Ok(())
     }
@@ -262,7 +262,7 @@ impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
                             map
                         })
                         .collect::<Vec<_>>(),
-                    navigation: &nav,
+                    navigation: nav,
                     current_path: doc.uri_path(),
                     project_title: self.config.title().to_string(),
                     logo: self.config.logo().map(|l| l.to_string()),
@@ -280,7 +280,7 @@ impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
                     .map_err(|e| Error::handlebars(e, "Could not render template"))?;
 
                 self.site
-                    .add_file(&doc.destination(self.config.out_dir()), out.into())?;
+                    .add_file(&doc.destination(self.config.out_dir()), out)?;
 
                 Ok(())
             })
@@ -289,7 +289,7 @@ impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
 
         dir.dirs
             .par_iter()
-            .map(|d| self.build_directory(&d, &nav, head_include))
+            .map(|d| self.build_directory(d, nav, head_include))
             .collect()
     }
 
@@ -313,14 +313,14 @@ impl<'a, T: SiteBackend> SiteGenerator<'a, T> {
             index.add_doc(
                 &doc.id.to_string(),
                 &[
-                    &doc.title(),
-                    &doc.uri_path().as_str(),
+                    doc.title(),
+                    doc.uri_path().as_str(),
                     doc.markdown_section(),
                 ],
             );
         }
         for dir in &root.dirs {
-            self.build_search_index_for_dir(&dir, index);
+            self.build_search_index_for_dir(dir, index);
         }
     }
 }

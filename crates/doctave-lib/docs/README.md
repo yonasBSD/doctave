@@ -34,8 +34,8 @@ with Doctave's own color scheme, and another customized color scheme.
 
 Light                               | Dark                                      |
 ------------------------------------|-------------------------------------------|
-![Exmple 1](/assets/example-1.png)  | ![Example 2](/assets/example-1-dark.png)  |
-![Exmple 2](/assets/example-2.png)  | ![Example 2](/assets/example-2-dark.png)  |
+![Example 1](/assets/example-1.png) | ![Example 2](/assets/example-1-dark.png)  |
+![Example 2](/assets/example-2.png) | ![Example 2](/assets/example-2-dark.png)  |
 
 ## Getting started
 
