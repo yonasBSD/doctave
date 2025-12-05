@@ -21,7 +21,12 @@ jobs:
           override: true
 
       - name: Run cargo clippy
-        run: cargo clippy --all-targets --all-features -- -D warnings
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings --message-format=json > clippy.json
+
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: clippy.json
 
   format:
     name: Formatting
