@@ -74,3 +74,67 @@ jobs:
 
       - name: Run cargo-udeps
         run: cargo +nightly udeps --workspace --all-targets
+
+  conventional-commits:
+    name: Conventional Commits
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history needed
+
+      - name: Install Cocogitto
+        run: cargo install cocogitto
+
+      - name: Run Conventional Commits check
+        id: cogcheck
+        run: |
+          set +e
+          cog check ${{ github.event.pull_request.base.sha }}..${{ github.sha }} > result.txt 2>&1
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+          cat result.txt
+
+      - name: Add PR comment if check fails
+        if: steps.cogcheck.outputs.exit_code != '0'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: conventional-commits
+          message: |
+            🚨 **Conventional Commits check failed!**
+
+            Your commit messages don’t comply with the Conventional Commits spec.
+
+            <details>
+            <summary>Details</summary>
+
+            ```
+            ${{ steps.cogcheck.outputs.exit_code }}
+            ```
+            </details>
+
+            ### 💡 How to fix
+            You can rewrite your commit messages using interactive rebase:
+
+            ```bash
+            git rebase -i origin/main
+            ```
+
+            - Change `pick` to `reword` for commits you need to fix.
+            - Edit the commit message to follow Conventional Commits (e.g. `feat: add login`, `fix: correct typo`).
+            - Save and continue the rebase.
+
+            If you only need to fix the latest commit:
+
+            ```bash
+            git commit --amend -m "feat: update README with installation guide"
+            ```
+
+            Then force-push your branch:
+
+            ```bash
+            git push --force
+            ```
+
+            ✅ Once you fix your commit messages, re-run the PR checks and this warning will disappear.
