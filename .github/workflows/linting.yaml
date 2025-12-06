@@ -20,19 +20,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rust toolchain (with clippy)
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@nightly
         with:
-          toolchain: nightly
           components: clippy
-          override: true
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install clippy-sarif and sarif-fmt
+        run: cargo binstall -y clippy-sarif sarif-fmt
 
       - name: Run cargo clippy
-        run: cargo clippy --workspace --all-targets --all-features --message-format=json -- -D warnings > clippy.json
+        run: cargo clippy --workspace --all-targets --all-features --message-format=json -- -D warnings | clippy-sarif | tee results.sarif | sarif-fmt
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v4
         with:
-          sarif_file: clippy.json
+          sarif_file: results.sarif
 
   format:
     name: Formatting
