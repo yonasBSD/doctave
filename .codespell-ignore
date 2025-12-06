@@ -1,5 +1,0 @@
-# Ignore generated files
-target/
-
-# Ignore specific crate paths
-crates/doctave-lib/src/assets/
