@@ -60,6 +60,21 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install typos-cli
+        run: cargo binstall -y typos-cli
+
+      - name: Search for typos
+        run: typos
+
   linkcheck:
     name: Markdown Link Check
     runs-on: ubuntu-latest
