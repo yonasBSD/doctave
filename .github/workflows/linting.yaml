@@ -16,7 +16,7 @@ jobs:
       - name: Install Rust toolchain (with clippy)
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           components: clippy
           override: true
 
@@ -38,7 +38,7 @@ jobs:
       - name: Install Rust toolchain (with rustfmt)
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           components: rustfmt
           override: true
 
@@ -74,7 +74,7 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           override: true
 
       - name: Install cargo-binstall
@@ -84,7 +84,7 @@ jobs:
         run: cargo binstall -y cargo-udeps
 
       - name: Run cargo-udeps
-        run: cargo udeps --workspace --all-targets
+        run: cargo +nightly udeps --workspace --all-targets
 
   conventional-commits:
     name: Conventional Commits
@@ -99,7 +99,7 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           override: true
 
       - name: Install cargo-binstall
