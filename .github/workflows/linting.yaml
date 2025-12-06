@@ -61,10 +61,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          override: true
+        uses: dtolnay/rust-toolchain@nightly
 
       - name: Install cargo-binstall
         uses: cargo-bins/cargo-binstall@main
@@ -93,10 +90,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          override: true
+        uses: dtolnay/rust-toolchain@nightly
 
       - name: Install cargo-binstall
         uses: cargo-bins/cargo-binstall@main
@@ -118,10 +112,7 @@ jobs:
           fetch-depth: 0   # full history needed
 
       - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          override: true
+        uses: dtolnay/rust-toolchain@nightly
 
       - name: Install cargo-binstall
         uses: cargo-bins/cargo-binstall@main
