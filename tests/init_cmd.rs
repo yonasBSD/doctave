@@ -29,7 +29,7 @@ integration_test!(init_smoke_test, |area| {
     area.assert_exists(Path::new("doctave.yaml"));
 });
 
-integration_test!(does_not_overwite_existing_docs, |area| {
+integration_test!(does_not_overwrite_existing_docs, |area| {
     area.mkdir("docs");
     area.write_file(Path::new("docs").join("some_file.md"), b"Some content");
 
@@ -109,7 +109,7 @@ integration_test!(custom_docsdir_generates, |area| {
         indoc! {"
         ---
         title: \"My Project\"
-        
+
         docs_dir: custom_docs_dir
     "},
     );
