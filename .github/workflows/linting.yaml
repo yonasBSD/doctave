@@ -99,6 +99,12 @@ jobs:
       - name: Install cargo-binstall
         uses: cargo-bins/cargo-binstall@main
 
+      - name: Install cargo-machete
+        run: cargo binstall -y cargo-udeps
+
+      - name: Run cargo-machete
+        run: cargo +nightly machete
+
       - name: Install cargo-udeps
         run: cargo binstall -y cargo-udeps
 
