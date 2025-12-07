@@ -136,7 +136,9 @@ jobs:
           set +e
           cog check ${{ github.event.pull_request.base.sha }}..${{ github.sha }} > result.txt 2>&1
           echo "exit_code=$?" >> $GITHUB_OUTPUT
-          cat result.txt
+          echo "details<<EOF" >> $GITHUB_OUTPUT
+          cat result.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Add PR comment if check fails
         if: steps.cogcheck.outputs.exit_code != '0'
@@ -152,7 +154,7 @@ jobs:
             <summary>Details</summary>
 
             ```
-            ${{ steps.cogcheck.outputs.exit_code }}
+            ${{ steps.cogcheck.outputs.details }}
             ```
             </details>
 
