@@ -1,0 +1,30 @@
+tests:
+  - 'tests/**/*'
+
+cli:
+  - 'crates/doctave-cli/**/*'
+
+docs:
+  - 'crates/doctave-lib/docs/**/*'
+  - '*.md'
+
+templates:
+  - 'crates/doctave-lib/templates/**/*'
+
+lib:
+  - 'crates/doctave-lib/src/**/*'
+
+assets:
+  - 'crates/doctave-lib/src/assets/**/*'
+
+grammars:
+  - 'crates/doctave-lib/src/assets/prism-grammars/**/*'
+
+workflows:
+  - '.github/**/*'
+
+feature:
+  - head-branch: ['^feature', 'feature', '^feat', 'feat']
+
+release:
+  - base-branch: 'main'
