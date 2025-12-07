@@ -1,4 +1,4 @@
-name: Generate Changelog and Release
+name: Generate Changelog
 
 on:
   schedule:
