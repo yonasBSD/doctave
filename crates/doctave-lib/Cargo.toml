@@ -4,27 +4,27 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-walkdir = "2.5.0"
-doctave-markdown = { git = "https://github.com/yonasBSD/doctave-markdown" }
-serde = { version = "1.0", features = ["derive"] }
-serde_yaml = "0.9"
-handlebars = "6.3.2"
-lazy_static = "1.5.0"
-tiny_http = "0.12"
-ascii = "1.1"
-http = "1.4"
-notify = "8.2.0"
-tungstenite = { version = "0.28", default-features = false, features = [ "handshake" ] }
-serde_json = { version = "1.0", default-features = false }
-crossbeam-channel = "0.5"
-elasticlunr-rs = { version = "3.0", default-features = false }
-bunt = "0.2.9"
-scoped_threadpool = "0.1"
-bus = "2.4.1"
-rayon = "1.11"
-colorsys = "0.7.3"
 alphanumeric-sort = "1.5.4"
+ascii = "1.1"
+bunt = "0.2.9"
+bus = "2.4.1"
+colorsys = "0.7.3"
+crossbeam-channel = "0.5"
+doctave-markdown = { git = "https://github.com/yonasBSD/doctave-markdown" }
+elasticlunr-rs = { version = "3.0", default-features = false }
+handlebars = "6.3.2"
+http = "1.4"
 include_dir = "0.7.4"
+lazy_static = "1.5.0"
+notify = "8.2.0"
+rayon = "1.11"
+scoped_threadpool = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", default-features = false }
+serde_yaml = "0.9"
+tiny_http = "0.12"
+tungstenite = { version = "0.28", default-features = false, features = ["handshake"] }
+walkdir = "2.5.0"
 
 [dev-dependencies]
 indoc = "2.0.7"

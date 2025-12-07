@@ -1,7 +1,7 @@
 [files]
 extend-exclude = [
-    "target",
-    "crates/doctave-lib/src/assets",
+  "target",
+  "crates/doctave-lib/src/assets",
 ]
 ignore-hidden = true
 ignore-files = true

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/doctave-lib",
-    "crates/doctave-cli",
+  "crates/doctave-cli",
+  "crates/doctave-lib",
 ]
