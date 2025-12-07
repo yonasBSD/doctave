@@ -103,7 +103,7 @@ jobs:
         run: cargo binstall -y cargo-machete
 
       - name: Run cargo-machete
-        run: cargo +nightly machete
+        run: cargo +nightly machete --with-metadata
 
       - name: Install cargo-udeps
         run: cargo binstall -y cargo-udeps
