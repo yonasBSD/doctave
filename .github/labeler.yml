@@ -1,27 +1,43 @@
 tests:
-  - 'tests/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'tests/**/*'
 
 cli:
-  - 'crates/doctave-cli/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'crates/doctave-cli/**/*'
 
 docs:
-  - 'crates/doctave-lib/docs/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'crates/doctave-lib/docs/**/*'
   - '*.md'
 
 templates:
-  - 'crates/doctave-lib/templates/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'crates/doctave-lib/templates/**/*'
 
 lib:
-  - 'crates/doctave-lib/src/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'crates/doctave-lib/src/**/*'
 
 assets:
-  - 'crates/doctave-lib/src/assets/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'crates/doctave-lib/src/assets/**/*'
 
 grammars:
-  - 'crates/doctave-lib/src/assets/prism-grammars/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'crates/doctave-lib/src/assets/prism-grammars/**/*'
 
 workflows:
-  - '.github/**/*'
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**/*'
 
 feature:
   - head-branch: ['^feature', 'feature', '^feat', 'feat']
