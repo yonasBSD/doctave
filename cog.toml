@@ -1,0 +1,6 @@
+[commit]
+# Conventional Commit types you allow
+types = ["feat", "fix", "chore", "docs", "style", "refactor", "perf", "test", "ci"]
+
+# Ignore commits that start with "Merge"
+ignore_patterns = ["^Merge "]
