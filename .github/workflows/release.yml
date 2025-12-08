@@ -39,7 +39,7 @@ jobs:
         run: echo "${{ env.DOCTAVE_VERSION }}" > artifacts/release-version
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v5
         with:
           name: artifacts
           path: artifacts
@@ -127,7 +127,7 @@ jobs:
           fi
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ env.ASSET }}
           path: ${{ env.ASSET }}
