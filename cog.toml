@@ -1,6 +1,18 @@
-[commit]
-# Conventional Commit types you allow
-types = ["feat", "fix", "chore", "docs", "style", "refactor", "perf", "test", "ci"]
+# Skip merge commits when checking Conventional Commits
+ignore_merge_commits = true
 
-# Ignore commits that start with "Merge"
-ignore_patterns = ["^Merge "]
+# (optional) also skip fixup commits
+ignore_fixup_commits = true
+
+# Define allowed commit types
+commit_types = [
+  "feat",
+  "fix",
+  "chore",
+  "docs",
+  "ci"
+  "style",
+  "refactor",
+  "perf",
+  "test",
+]
