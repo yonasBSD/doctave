@@ -12,7 +12,7 @@ docs:
   - changed-files:
     - any-glob-to-any-file:
       - 'crates/doctave-lib/docs/**/*'
-  - '*.md'
+      - '*.md'
 
 templates:
   - changed-files:
