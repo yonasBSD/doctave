@@ -1,13 +1,10 @@
-name: Check PR
+name: PR Labels
 
 permissions: {}
 
 on:
-  pull_request_target: # zizmor: ignore[dangerous-triggers]
-    types:
-      - opened
-      - edited
-      - synchronize
+  pull_request: # zizmor: ignore[dangerous-triggers]
+    types: [opened, edited, synchronize]
 
 permissions:
   contents: read
