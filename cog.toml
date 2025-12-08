@@ -10,9 +10,9 @@ commit_types = [
   "fix",
   "chore",
   "docs",
-  "ci"
+  "ci",
   "style",
   "refactor",
   "perf",
-  "test",
+  "test"
 ]
