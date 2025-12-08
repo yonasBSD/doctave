@@ -1,18 +1,2 @@
 # Skip merge commits when checking Conventional Commits
 ignore_merge_commits = true
-
-# (optional) also skip fixup commits
-ignore_fixup_commits = true
-
-# Define allowed commit types
-commit_types = [
-  "feat",
-  "fix",
-  "chore",
-  "docs",
-  "ci",
-  "style",
-  "refactor",
-  "perf",
-  "test"
-]
