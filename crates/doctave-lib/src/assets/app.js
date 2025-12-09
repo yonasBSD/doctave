@@ -177,7 +177,7 @@ for (let element of mathElements) {
                 .replaceAll(/>/g, "&gt;")
                 .replaceAll("\n", "<br />");
 
-            element.innerHTML = "<p class='katex-error-msg'>" + error_message + "</p>" + latex.trim().replaceAll("\n", "<br />");
+            element.innerHTML = "<p class='katex-error-msg'>" + error_message + "</p>" + escapeHtml(latex.trim()).replaceAll("\n", "<br />");
             element.classList.add("katex-error");
         } else {
             throw e;  // other error
