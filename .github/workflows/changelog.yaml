@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   changelog:
+    name: Update Changelog
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
