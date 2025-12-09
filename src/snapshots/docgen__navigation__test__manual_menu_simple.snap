@@ -1,0 +1,25 @@
+---
+source: src/navigation.rs
+description: Manual menu simple
+---
+[
+    Link {
+        src: "one.md",
+        children: [],
+        path: "/one",
+        title: "One",
+    },
+    Link {
+        src: "child",
+        children: [
+            Link {
+                src: "child/three.md",
+                children: [],
+                path: "/child/three",
+                title: "Three",
+            },
+        ],
+        path: "/child/",
+        title: "Nested Root",
+    },
+]

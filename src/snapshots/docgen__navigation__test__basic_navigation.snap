@@ -1,0 +1,74 @@
+---
+source: src/navigation.rs
+description: Basic navigation
+---
+[
+    Link {
+        src: "1.one.md",
+        children: [],
+        path: "/1.one",
+        title: "One",
+    },
+    Link {
+        src: "2.two.md",
+        children: [],
+        path: "/2.two",
+        title: "Two",
+    },
+    Link {
+        src: "4.four.md",
+        children: [],
+        path: "/4.four",
+        title: "Four",
+    },
+    Link {
+        src: "child",
+        children: [
+            Link {
+                src: "child/3.three.md",
+                children: [],
+                path: "/child/3.three",
+                title: "Three",
+            },
+            Link {
+                src: "child/5.five.md",
+                children: [],
+                path: "/child/5.five",
+                title: "Five",
+            },
+            Link {
+                src: "child/child_of_child",
+                children: [
+                    Link {
+                        src: "child/child_of_child/6.six.md",
+                        children: [],
+                        path: "/child/child_of_child/6.six",
+                        title: "Six",
+                    },
+                    Link {
+                        src: "child/child_of_child/7.seven.md",
+                        children: [],
+                        path: "/child/child_of_child/7.seven",
+                        title: "Seven",
+                    },
+                    Link {
+                        src: "child/child_of_child/8.eight.md",
+                        children: [],
+                        path: "/child/child_of_child/8.eight",
+                        title: "Eight",
+                    },
+                    Link {
+                        src: "child/child_of_child/ASASSA.md",
+                        children: [],
+                        path: "/child/child_of_child/ASASSA",
+                        title: "Child of Child",
+                    },
+                ],
+                path: "/child/child_of_child/",
+                title: "Child of Child",
+            },
+        ],
+        path: "/child/",
+        title: "Nested Root",
+    },
+]

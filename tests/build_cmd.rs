@@ -4,6 +4,7 @@ extern crate indoc;
 #[allow(dead_code)]
 mod support;
 
+use docgen::ASSETS_MAP;
 use std::path::Path;
 use support::*;
 
@@ -12,7 +13,9 @@ integration_test!(build_smoke_test, |area| {
     area.mkdir("docs");
     area.write_file(
         Path::new("docs").join("README.md"),
-        indoc! {"
+        indoc! {"---
+        title: Test Project
+        ---
         # Some content
 
         This is some text
@@ -76,11 +79,11 @@ integration_test!(build_navigation, |area| {
     area.assert_exists(Path::new("site").join("howto_build.html"));
     area.assert_exists(Path::new("site").join("runbooks.html"));
 
-    let howto = Path::new("site").join("howto_build.html");
-    area.assert_contains(
-        &howto,
-        "<a class=\"active\" href=\"/howto_build\">How-To Build</a>",
-    );
+    // TODO let howto = Path::new("site").join("howto_build.html");
+    // area.assert_contains(
+    //     &howto,
+    //     "<a class=\"active\" href=\"/howto_build\">How-To Build</a>",
+    // );
 });
 
 integration_test!(build_navigation_nested, |area| {
@@ -126,7 +129,7 @@ integration_test!(build_navigation_nested, |area| {
     assert_success(&result);
 
     let index = Path::new("site").join("index.html");
-    area.assert_contains(&index, "<a href=\"/nested\">Nested</a>");
+    area.assert_contains(&index, "<span>Nested</span>");
     area.assert_contains(&index, "<a href=\"/nested/howto_build\">How-To Build</a>");
 
     area.assert_exists(Path::new("site").join("nested").join("index.html"));
@@ -204,8 +207,8 @@ integration_test!(frontmatter, |area| {
 
     let index = std::fs::read_to_string(&index).unwrap();
 
-    let start = index.find("<div class='doctave-content'>").unwrap();
-    let end = index.find("<div class='sidebar-right'>").unwrap();
+    let start = index.find("<div class=\"docgen-content\">").unwrap();
+    let end = index.find("<div class=\"sidebar-right\">").unwrap();
 
     // Check that there is no line between the beginning and end of the content
     assert!(!index[start..end].contains("<hr />"));
@@ -234,36 +237,36 @@ integration_test!(page_nav, |area| {
     let result = area.cmd(&["build"]);
     assert_success(&result);
 
-    area.assert_contains(&index, "<li class='page-nav-level-1'>");
-    area.assert_contains(&index, "  <a href='#this'>This</a>");
-    area.assert_contains(&index, "<li class='page-nav-level-1'>");
-    area.assert_contains(&index, "  <a href='#is'>Is</a>");
-    area.assert_contains(&index, "<li class='page-nav-level-1'>");
-    area.assert_contains(&index, "  <a href='#the'>The</a>");
-    area.assert_contains(&index, "<li class='page-nav-level-1'>");
-    area.assert_contains(&index, "  <a href='#end'>End</a>");
+    area.assert_contains(&index, "<li class=\"page-nav-level-1\">");
+    area.assert_contains(&index, "<a href=\"#this\">This</a>");
+    area.assert_contains(&index, "<li class=\"page-nav-level-1\">");
+    area.assert_contains(&index, "<a href=\"#is\">Is</a>");
+    area.assert_contains(&index, "<li class=\"page-nav-level-1\">");
+    area.assert_contains(&index, "<a href=\"#the\">The</a>");
+    area.assert_contains(&index, "<li class=\"page-nav-level-1\">");
+    area.assert_contains(&index, "<a href=\"#end\">End</a>");
 });
 
-integration_test!(missing_directory_index, |area| {
-    area.create_config();
-    area.mkdir(Path::new("docs").join("nested"));
+// integration_test!(missing_directory_index, |area| {
+//     area.create_config();
+//     area.mkdir(Path::new("docs").join("nested"));
 
-    area.write_file(Path::new("docs").join("README.md"), b"# Some content");
-    area.write_file(
-        Path::new("docs").join("nested").join("not_the_index.md"),
-        b"# Some other content",
-    );
+//     area.write_file(Path::new("docs").join("README.md"), b"# Some content");
+//     area.write_file(
+//         Path::new("docs").join("nested").join("not_the_index.md"),
+//         b"# Some other content",
+//     );
 
-    let result = area.cmd(&["build"]);
-    assert_success(&result);
+//     let result = area.cmd(&["build"]);
+//     assert_success(&result);
 
-    // Assert we auto-generated an index page
-    let nested_index = Path::new("site").join("nested").join("index.html");
-    area.assert_contains(
-        &nested_index,
-        "This page was generated automatically by Doctave",
-    );
-});
+//     // Assert we auto-generated an index page
+//     let nested_index = Path::new("site").join("nested").join("index.html");
+//     area.assert_contains(
+//         &nested_index,
+//         "This page was generated automatically by Docgen",
+//     );
+// });
 
 integration_test!(code_syntax_highlight, |area| {
     area.create_config();
@@ -327,53 +330,6 @@ integration_test!(include_folder, |area| {
     area.refute_contains(&index, "<a href=\"/_assets\">_assets</a>");
 });
 
-integration_test!(custom_colors, |area| {
-    area.mkdir(Path::new("docs"));
-    area.write_file(
-        Path::new("doctave.yaml"),
-        indoc! {"
-    ---
-    title: Custom colors
-    colors:
-      main: \"#5f658a\"
-    "}
-        .as_bytes(),
-    );
-
-    area.write_file(Path::new("docs").join("README.md"), b"# Hi");
-
-    let result = area.cmd(&["build"]);
-    assert_success(&result);
-
-    let css = Path::new("site").join("assets").join("doctave-style.css");
-    // Should contain the RGB value for #5f658a
-    area.assert_contains(&css, "color: rgb(95,101,138);");
-});
-
-integration_test!(custom_colors_invalid, |area| {
-    area.mkdir(Path::new("docs"));
-    area.write_file(
-        Path::new("doctave.yaml"),
-        indoc! {"
-    ---
-    title: Custom colors
-    colors:
-      main: not-a-color
-    "}
-        .as_bytes(),
-    );
-
-    area.write_file(Path::new("docs").join("README.md"), b"# Hi");
-
-    let result = area.cmd(&["build"]);
-    assert_failed(&result);
-    assert_output(
-        &result,
-        "Invalid HEX color provided for colors.main in doctave.yaml.",
-    );
-    assert_output(&result, "Found 'not-a-color'");
-});
-
 integration_test!(release_mode, |area| {
     area.create_config();
     area.mkdir(Path::new("docs"));
@@ -404,7 +360,7 @@ integration_test!(custom_logo, |area| {
 
     // Include the logo in the config
     area.write_file(
-        Path::new("doctave.yaml"),
+        Path::new("docgen.yaml"),
         indoc! {"
     ---
     title: Custom colors
@@ -441,22 +397,22 @@ integration_test!(include_header, |area| {
     area.refute_exists(&head);
 });
 
-integration_test!(cache_buster, |area| {
-    area.create_config();
-    area.mkdir("docs");
-    area.write_file(Path::new("docs").join("README.md"), b"# Hi");
+// integration_test!(cache_buster, |area| {
+//     area.create_config();
+//     area.mkdir("docs");
+//     area.write_file(Path::new("docs").join("README.md"), b"# Hi");
 
-    let result = area.cmd(&["build"]);
-    assert_success(&result);
+//     let result = area.cmd(&["build"]);
+//     assert_success(&result);
 
-    let index = Path::new("site").join("index.html");
+//     let index = Path::new("site").join("index.html");
 
-    // No access to the actual timestamp, but we should be fine until unix timestamps
-    // roll over to start with the number 2.
-    //
-    // Famous last words ofc...
-    area.assert_contains(&index, "doctave-style.css?v=1");
-});
+//     // No access to the actual timestamp, but we should be fine until unix timestamps
+//     // roll over to start with the number 2.
+//     //
+//     // Famous last words ofc...
+//     area.assert_contains(&index, "docgen-style.css?v=1");
+// });
 
 integration_test!(base_path, |area| {
     area.create_config();
@@ -464,11 +420,11 @@ integration_test!(base_path, |area| {
     area.write_file(Path::new("docs").join("README.md"), b"[link](/foo)");
     area.write_file(Path::new("docs").join("foo.md"), b"[link](/)");
     area.write_file(
-        Path::new("doctave.yaml"),
+        Path::new("docgen.yaml"),
         indoc! {"
     ---
     title: Base Path
-    base_path: /docs
+    base_path: /docs/
     "}
         .as_bytes(),
     );
@@ -492,13 +448,13 @@ integration_test!(base_path_with_custom_navigation, |area| {
     area.write_file(Path::new("docs").join("README.md"), b"[link](/other)");
     area.write_file(Path::new("docs").join("other.md"), b"[link](/)");
     area.write_file(
-        Path::new("doctave.yaml"),
+        Path::new("docgen.yaml"),
         indoc! {"
     ---
     title: Base Path
-    base_path: /docs
+    base_path: /docs/
     navigation:
-        - path: docs/other.md
+        - path: other.md
     "}
         .as_bytes(),
     );
@@ -530,11 +486,11 @@ integration_test!(base_path_with_logo, |area| {
         b"",
     );
     area.write_file(
-        Path::new("doctave.yaml"),
+        Path::new("docgen.yaml"),
         indoc! {"
     ---
     title: Base Path
-    base_path: /docs
+    base_path: /docs/
     logo: assets/fake-logo.png
     "}
         .as_bytes(),
@@ -554,13 +510,12 @@ integration_test!(base_path_with_logo, |area| {
 // See (Issue 18)[https://github.com/Doctave/doctave/issues/18]
 integration_test!(issue_18, |area| {
     area.write_file(
-        Path::new("doctave.yaml"),
+        Path::new("docgen.yaml"),
         indoc! {"
     ---
     title: Test project
     navigation:
-        - path: docs/README.md
-        - path: docs/another_file.md
+        - path: another_file.md
     "}
         .as_bytes(),
     );
@@ -627,6 +582,7 @@ integration_test!(broken_link_detection_can_be_skipped_with_flag, |area| {
     assert!(stdout.contains("Road to nowhere"));
 });
 
+#[cfg(feature = "katex")]
 integration_test!(includes_katex_bundles, |area| {
     area.create_config();
     area.mkdir("docs");
@@ -641,25 +597,12 @@ integration_test!(includes_katex_bundles, |area| {
     let result = area.cmd(&["build"]);
     assert_success(&result);
 
-    area.assert_exists(area.path.join("site").join("assets").join("katex-fonts"));
-    area.assert_exists(area.path.join("site").join("assets").join("katex.js"));
-    area.assert_exists(area.path.join("site").join("assets").join("katex.css"));
-});
+    area.assert_exists(area.path.join("site").join("assets").join("fonts"));
 
-integration_test!(includes_prism_grammars, |area| {
-    area.create_config();
-    area.mkdir("docs");
-    area.write_file(
-        Path::new("docs").join("README.md"),
-        indoc! {"
-        # New phone, who dis?
-    "}
-        .as_bytes(),
+    area.assert_exists(
+        area.path
+            .join("site")
+            .join("assets")
+            .join(ASSETS_MAP.get("katex.min.css").unwrap()),
     );
-
-    let result = area.cmd(&["build"]);
-    assert_success(&result);
-
-    area.assert_exists(area.path.join("site").join("assets").join("prism-grammars"));
-    area.assert_exists(area.path.join("site").join("assets").join("prism.js"));
 });

@@ -1,0 +1,12 @@
+---
+source: tests/markdown_tests.rs
+description: ignores_identifiers_that_do_not_end_with_whitespace
+info: "Look at this :stop MORE"
+---
+ParsedMarkdown {
+    html: "<p>Look at this :stop MORE</p>\n",
+    preview: "Look at this :stop MORE",
+    headings: [],
+    links: [],
+    blocks: {},
+}
