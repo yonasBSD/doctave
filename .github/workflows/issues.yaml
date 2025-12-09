@@ -23,6 +23,10 @@ on:
   schedule:
     - cron: "0 0 * * *" # runs daily at midnight UTC
 
+permissions:
+  issues: write      # required for labeling, removing labels, closing issues
+  contents: read     # safe default, needed for repo metadata
+
 jobs:
   auto-label:
     runs-on: ubuntu-latest

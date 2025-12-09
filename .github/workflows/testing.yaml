@@ -11,6 +11,11 @@ on:
       - "Cargo.*"
       - "crates/**/Cargo.*"
 
+permissions:
+  contents: read       # checkout repo
+  pull-requests: read  # triggered by PR events
+  actions: read        # caching support
+
 jobs:
   test:
     name: Test

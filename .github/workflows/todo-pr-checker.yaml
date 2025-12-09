@@ -6,6 +6,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read        # checkout repo
+  pull-requests: write  # post comments/checks on PRs
+
 jobs:
   todo_checker:
     name: Todo Checker
