@@ -1,0 +1,19 @@
+---
+source: tests/markdown_tests.rs
+description: rewrite_link_root_path
+info: "\n[an link](/foo/bar)\n"
+---
+ParsedMarkdown {
+    html: "<p><a href=\"/other/root/foo/bar\">an link</a></p>\n",
+    preview: "an link",
+    headings: [],
+    links: [
+        Link {
+            title: "an link",
+            url: Local(
+                "/other/root/foo/bar",
+            ),
+        },
+    ],
+    blocks: {},
+}

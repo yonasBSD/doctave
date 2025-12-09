@@ -1,0 +1,12 @@
+---
+source: tests/markdown_tests.rs
+description: supports_github_style_markdown_checkboxes
+info: "* [ ] Incomplete\n* [x] Complete\n"
+---
+ParsedMarkdown {
+    html: "<ul class=\"checklist\">\n<li><input disabled=\"\" type=\"checkbox\"/>\nIncomplete</li>\n<li><input disabled=\"\" type=\"checkbox\" checked=\"\"/>\nComplete</li>\n</ul>\n",
+    preview: "",
+    headings: [],
+    links: [],
+    blocks: {},
+}

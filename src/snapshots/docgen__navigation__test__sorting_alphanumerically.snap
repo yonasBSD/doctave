@@ -1,0 +1,80 @@
+---
+source: src/navigation.rs
+description: Sort alphanumerically
+---
+[
+    Link {
+        src: "001.md",
+        children: [],
+        path: "/001",
+        title: "bb",
+    },
+    Link {
+        src: "002.md",
+        children: [],
+        path: "/002",
+        title: "11",
+    },
+    Link {
+        src: "child2",
+        children: [
+            Link {
+                src: "child2/001.md",
+                children: [],
+                path: "/child2/001",
+                title: "123",
+            },
+            Link {
+                src: "child2/002.md",
+                children: [],
+                path: "/child2/002",
+                title: "aa",
+            },
+            Link {
+                src: "child2/003.md",
+                children: [],
+                path: "/child2/003",
+                title: "cc",
+            },
+            Link {
+                src: "child2/004.md",
+                children: [],
+                path: "/child2/004",
+                title: "bb",
+            },
+        ],
+        path: "/child2/",
+        title: "Index",
+    },
+    Link {
+        src: "child",
+        children: [
+            Link {
+                src: "child/001.md",
+                children: [],
+                path: "/child/001",
+                title: "BB",
+            },
+            Link {
+                src: "child/002.md",
+                children: [],
+                path: "/child/002",
+                title: "22",
+            },
+            Link {
+                src: "child/003.md",
+                children: [],
+                path: "/child/003",
+                title: "AA",
+            },
+            Link {
+                src: "child/004.md",
+                children: [],
+                path: "/child/004",
+                title: "11",
+            },
+        ],
+        path: "/child/",
+        title: "Index",
+    },
+]

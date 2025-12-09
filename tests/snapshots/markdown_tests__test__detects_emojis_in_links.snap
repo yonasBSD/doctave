@@ -1,0 +1,19 @@
+---
+source: tests/markdown_tests.rs
+description: detects_emojis_in_links
+info: "[:grinning:](/foo)"
+---
+ParsedMarkdown {
+    html: "<p><a href=\"/foo\">😀</a></p>\n",
+    preview: "😀",
+    headings: [],
+    links: [
+        Link {
+            title: "😀",
+            url: Local(
+                "/foo",
+            ),
+        },
+    ],
+    blocks: {},
+}
