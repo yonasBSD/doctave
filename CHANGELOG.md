@@ -1,42 +1,69 @@
-Changelog
-=========
+## [unreleased]
 
-Starting from version 0.4.0, Doctave will maintain this changelog to describe changes in each release.
+### 🚀 Features
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to
-[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+- Add badges to README.md
+- Add dprint config and fix formatting.
 
-## [0.4.2](https://github.com/Doctave/doctave/releases/tag/0.4.2) 2022-04-02
+### 🐛 Bug Fixes
 
-### Fixed
+- Linting workflow should run on any branch.
+- Linting errors.
+- Linting errors and remove linkspector from CI
+- Update .ignore
+- Links in README.md.
+- Clippy errors.
+- Clippy errors.
+- Missing permissions on linting workflow.
+- Use clippy-sarif to upload proper SARIF.
+- Actually install cargo-machete.
+- Resolve false positives with cargo-machete.
+- Better conventional commits error messages.
+- Correct URL to latest git-cliff release.
+- Cog check should ignore merge commits.
+- PR Labels workflow should fire on forked repos.
+- Remove empty permissions in workflow.
+- Rename labeler config file extension.
+- Update labeler config to latest format.
+- Do not require scope when linting PRs.
+- Generate changelog using all commits.
+- Fetch-depth indent.
 
-- Fix loading of Prism grammars when using a subdomain [#40](https://github.com/Doctave/doctave/issues/34)([@oeb25](https://github.com/oeb25))
+### 💼 Other
 
-## [0.4.1](https://github.com/Doctave/doctave/releases/tag/0.4.1) 2022-01-05
+- Committing before a refactor
+- Progress on getting new styles up and running
+- Committing before rethink
+- Committing before navigation refactor
+- Making some changes to the config system to make other changes easy
 
-### Fixed
+### ⚙️ Miscellaneous Tasks
 
-- Fix CSS class name collision with some Prism grammars [#34](https://github.com/Doctave/doctave/issues/34)
-
-## [0.4.0](https://github.com/Doctave/doctave/releases/tag/0.4.0) 2021-12-29
-
-This was the biggest release since the initial introduction of Doctave, adding a number of interesting new features.
-
-* [GitHub Milestone](https://github.com/Doctave/doctave/milestone/1)
-
-### Added
-
-- Adds support for rendering mathematical notation [#14](https://github.com/Doctave/doctave/issues/14)
-- Broken links checking during build process [#13](https://github.com/Doctave/doctave/issues/13)
-- Expanded supported languages for syntax highlighting [#24](https://github.com/Doctave/doctave/issues/24)
-
-### Changed
-
-- Anchor links no longer contain a link index in the URL hash part [#15](https://github.com/Doctave/doctave/issues/15)
-- Updated Mermaid.JS version [#17](https://github.com/Doctave/doctave/issues/17)
-
-### Fixed
-
-- Build failure when including the root path in the navigation hierarchy [#18](https://github.com/Doctave/doctave/issues/18)
-  ([@datdenkikniet](https://github.com/datdenkikniet))
-- Right side navigation not including text from code blocks in headings [#15](https://github.com/Doctave/doctave/issues/15)
+- Update dependencies.
+- Update dependencies and refactor.
+- Update incompatible dependencies.
+- Move docs and templates to lib folder.
+- Add conventional commits check. Runs cocogitto.
+- Don't exit after first fail during testing.
+- Upload clippy SARIF results.
+- Generate code coverage badge.
+- Use cargo-binstall for faster setup.
+- Add an issue management workflow.
+- Use nightly toolchain.
+- Use .codespellignore. Update test matrix.
+- Use yonasBSD/doctave-markdown.
+- Switch to typos-cli for spell checking.
+- Run typos-cli manually to lint non-PRs.
+- Switch to dtolnay/rust-toolchain.
+- Add OSSF Scorecard workflow.
+- Add TODO checker workflows.
+- Add dependency review. Runs on PRs.
+- Add cargo-machete. Update deps in scorecard.yaml
+- Add labels to pull requests.
+- Cleanup changelog workflow title.
+- Add labeler.yaml config.
+- Add greeting workflow to greet first time contributors.
+- Update actions checkout.
+- Upgrade codeql workflow.
+- Update create-pull-request to v7.
+- Update changelog workflow title.
