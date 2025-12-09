@@ -150,6 +150,15 @@ var mathElements = document.getElementsByClassName("math");
 
 const macros = {}
 
+// Utility: Escape special HTML characters to prevent XSS
+function escapeHtml(str) {
+    return str.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#39;");
+}
+
 for (let element of mathElements) {
     let latex = element.textContent;
 
@@ -168,7 +177,7 @@ for (let element of mathElements) {
                 .replaceAll(/>/g, "&gt;")
                 .replaceAll("\n", "<br />");
 
-            element.innerHTML = "<p class='katex-error-msg'>" + error_message + "</p>" + latex.trim().replaceAll("\n", "<br />");
+            element.innerHTML = "<p class='katex-error-msg'>" + error_message + "</p>" + escapeHtml(latex.trim()).replaceAll("\n", "<br />");
             element.classList.add("katex-error");
         } else {
             throw e;  // other error
