@@ -67,3 +67,6 @@
 - Upgrade codeql workflow.
 - Update create-pull-request to v7.
 - Update changelog workflow title.
+- Update changelog (#10)
+- Changelog workflow should have signed commits.
+- Add permissions block to workflows.
