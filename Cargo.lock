@@ -396,7 +396,7 @@ dependencies = [
 [[package]]
 name = "doctave-markdown"
 version = "0.9.0"
-source = "git+https://github.com/Doctave/doctave-markdown?tag=0.9.0#82e2b99b09c95092e64629033b0ff6c2b110af47"
+source = "git+https://github.com/yonasBSD/doctave-markdown#82e2b99b09c95092e64629033b0ff6c2b110af47"
 dependencies = [
  "ammonia",
  "emojis",

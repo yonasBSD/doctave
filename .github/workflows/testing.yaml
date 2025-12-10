@@ -89,5 +89,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-target-${{ matrix.rust }}-
 
+      - name: Install cago-nextest
+        run: cargo binstall -y cargo-nextest
+
       - name: Run tests
-        run: cargo test --no-fail-fast --all --verbose
+        run: cargo nextest --no-fail-fast --all --verbose
