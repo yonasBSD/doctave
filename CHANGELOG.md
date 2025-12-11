@@ -4,6 +4,8 @@
 
 - Add badges to README.md
 - Add dprint config and fix formatting.
+- Add goji config file.
+- Add todo-tree workflow to CI. Runs alexandretrotel/todo-tree.
 
 ### 🐛 Bug Fixes
 
@@ -28,6 +30,7 @@
 - Do not require scope when linting PRs.
 - Generate changelog using all commits.
 - Fetch-depth indent.
+- Install cargo-binstall before installing cargo-nextest.
 
 ### 💼 Other
 
@@ -67,3 +70,8 @@
 - Upgrade codeql workflow.
 - Update create-pull-request to v7.
 - Update changelog workflow title.
+- Update changelog (#10)
+- Changelog workflow should have signed commits.
+- Add permissions block to workflows.
+- Use cargo-nextest for faster tests.
+- Add alexandretrotel/todo-tree-action. Runs on PRs.
