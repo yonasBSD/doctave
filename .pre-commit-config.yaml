@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-toml
+        exclude: |
+          (?x)^(
+            .*/(doctave-lib/src/assets)/.*|
+            .*/*.svg
+          )$
+      - id: check-yaml
+        exclude: |
+          (?x)^(
+            .*/(doctave-lib/src/assets)/.*|
+            .*/*.svg
+          )$
+      - id: end-of-file-fixer
+        exclude: |
+          (?x)^(
+            .*/(doctave-lib/src/assets)/.*|
+            .*/*.svg
+          )$
+      - id: trailing-whitespace
+        exclude: |
+          (?x)^(
+            .*/(doctave-lib/src/assets)/.*|
+            .*/*.svg
+          )$

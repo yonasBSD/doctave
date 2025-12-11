@@ -39,7 +39,6 @@ lint-commit-msg file:
     return 1
   fi
 
-# TODO: Add remaining packages listed in README.md
 install:
   lefthook install
   prek install

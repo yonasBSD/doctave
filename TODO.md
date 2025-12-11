@@ -10,7 +10,7 @@
 
 ## Documentation
 
-- scdoc 
+- scdoc
   - man page
 - mdbook
   - technical guides

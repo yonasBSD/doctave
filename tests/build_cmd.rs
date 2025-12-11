@@ -139,7 +139,7 @@ integration_test!(mermaid_js, |area| {
     area.write_file(
         Path::new("docs").join("README.md"),
         indoc! {"
-        # Mermaid 
+        # Mermaid
 
         ```mermaid
         graph TD

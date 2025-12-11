@@ -11,13 +11,12 @@ dotenv: [".env", "{{ .taskEnv }}"]
 vars:
   project: Hello World
   homepage: https://example.com
+  author: Acme Inc.
+  version: 0.0.1
   forums: https://example.com/forums
   chat: https://chat.example.com
   ircserver: irc.libera.chat
   ircroom: help
-  homepage: https://example.com
-  author: Acme Inc.
-  version: 0.0.1
   build:
     sh: git rev-parse --short HEAD
   date:

@@ -1,0 +1,23 @@
+[formatter.dprint-check]
+command = "dprint"
+options = ["check"]
+excludes = []
+includes = ["*.yaml", "*.yml", "*.js", "*.ts"]
+
+[formatter.dprint-format]
+command = "dprint"
+options = ["fmt"]
+excludes = []
+includes = ["*.yaml", "*.yml", "*.js", "*.ts"]
+
+[formatter.oxfmt-check]
+command = "oxfmt"
+options = ["check"]
+excludes = []
+includes = ["*.js", "*.ts"]
+
+[formatter.oxfmt-format]
+command = "oxfmt"
+options = []
+excludes = []
+includes = ["*.js", "*.ts"]

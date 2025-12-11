@@ -34,7 +34,7 @@ This guide assumes you have:
 ### Disable Jekyll builds
 
 First, you need to tell Github not to use Jekyll to build your site. You do this by including a
-`.nojekyll` file in the root of site. 
+`.nojekyll` file in the root of site.
 
 In Doctave, you do this by adding the file under `docs/_include`.
 
