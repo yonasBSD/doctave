@@ -46,6 +46,7 @@ jobs:
           todo-tree stats >> $SUMMARY_FILE
 
   todo-list-pr:
+    name: Remaining Todos in PR
     runs-on: ubuntu-latest
     permissions:
       contents: read
