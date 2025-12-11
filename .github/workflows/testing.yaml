@@ -64,12 +64,11 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get update && sudo apt-get install -y musl-tools
 
-      - name: Set up Rust
-        uses: actions-rs/toolchain@v1
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
         with:
           toolchain: ${{ matrix.rust }}
           target: ${{ matrix.target }}
-          override: true
 
       - name: Cache cargo registry
         uses: actions/cache@v4
@@ -89,7 +88,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-target-${{ matrix.rust }}-
 
-      - name: Install cago-nextest
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install cargo-nextest
         run: cargo binstall -y cargo-nextest
 
       - name: Run tests
