@@ -32,3 +32,10 @@
 ## Config
 - kcl
 - rcl
+
+## Security
+- SBOM
+- checksums
+  - BLAKE3
+- signatures
+  - minisign
