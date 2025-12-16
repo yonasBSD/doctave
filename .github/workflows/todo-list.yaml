@@ -58,7 +58,7 @@ jobs:
           fetch-depth: 0  # Required for changed-only and new-only modes
 
       - name: Scan for TODOs
-        uses: alexandretrotel/todo-tree-action@v1
+        uses: alexandretrotel/todo-tree-action@v1.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           tags: "TODO,FIXME,BUG,HACK"
