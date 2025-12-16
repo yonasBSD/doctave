@@ -17,7 +17,7 @@
 - ddoc
   - quick install howto
 - zola
-  - release annoucements / blog
+  - release announcements / blog
 
 ## Task runners
 
