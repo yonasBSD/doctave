@@ -43,7 +43,7 @@ jobs:
         run: echo "${{ env.DOCTAVE_VERSION }}" > artifacts/release-version
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: artifacts
@@ -98,7 +98,7 @@ jobs:
         run: strip "target/${{ matrix.target }}/release/doctave"
 
       - name: Get release download URL
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: artifacts
           path: artifacts
@@ -134,7 +134,7 @@ jobs:
           fi
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.ASSET }}
           path: ${{ env.ASSET }}
