@@ -95,4 +95,4 @@ jobs:
         run: cargo binstall -y cargo-nextest
 
       - name: Run tests
-        run: cargo nextest --workspace --all-features --all-targets --verbose
+        run: cargo nextest run --workspace --all-features --all-targets --verbose
