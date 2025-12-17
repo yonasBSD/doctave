@@ -27,7 +27,7 @@ jobs:
       - name: List Todos
         run: |
           SUMMARY_FILE=$GITHUB_STEP_SUMMARY
-          TODO_OUTPUT=$(todo-tree list)
+          TODO_OUTPUT=$(tt list)
 
           # Check if output is empty and provide a clear success message if so.
           if [ "$TODO_OUTPUT" = "No TODO items found." ]; then
@@ -42,8 +42,8 @@ jobs:
           echo "" >> $SUMMARY_FILE
 
           # 2. Append the raw output directly (preserves ANSI colors)
-          todo-tree list --case-sensitive >> $SUMMARY_FILE
-          todo-tree stats >> $SUMMARY_FILE
+          tt list --case-sensitive >> $SUMMARY_FILE
+          tt stats >> $SUMMARY_FILE
 
   todo-list-pr:
     name: Remaining Todos in PR
@@ -58,7 +58,7 @@ jobs:
           fetch-depth: 0  # Required for changed-only and new-only modes
 
       - name: Scan for TODOs
-        uses: alexandretrotel/todo-tree-action@v1
+        uses: alexandretrotel/todo-tree-action@v1.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           tags: "TODO,FIXME,BUG,HACK"
