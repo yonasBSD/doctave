@@ -13,9 +13,9 @@ dependencies = [
 
 [[package]]
 name = "alphanumeric-sort"
-version = "1.5.4"
+version = "1.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab31f79a61d3c25cae1d6734a386662e5cf1b6ba5a9720c135b609273c058c15"
+checksum = "774ffdfeac16e9b4d75e41225dc2545d9c2082a0634b5d7f6f70e168546eecb1"
 
 [[package]]
 name = "ammonia"
