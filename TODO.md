@@ -17,7 +17,7 @@
 - ddoc
   - quick install howto
 - zola
-  - release annoucements / blog
+  - release announcements / blog
 
 ## Task runners
 
@@ -35,7 +35,12 @@
 
 ## Security
 - SBOM
+  - to binary (cargo-auditable)
+  - to release assets (cargo-cyclonedx, cargo-sbom)
 - checksums
   - BLAKE3
 - signatures
   - minisign
+
+## License
+- cargo-about
