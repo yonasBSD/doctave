@@ -4,6 +4,9 @@
 
 - Add badges to README.md
 - Add dprint config and fix formatting.
+- Add goji config file.
+- Add todo-tree workflow to CI. Runs alexandretrotel/todo-tree.
+- Build with cargo-auditable to add SBOM to the release binary.
 
 ### 🐛 Bug Fixes
 
@@ -28,6 +31,12 @@
 - Do not require scope when linting PRs.
 - Generate changelog using all commits.
 - Fetch-depth indent.
+- Install cargo-binstall before installing cargo-nextest.
+- Typo and todo-tree => tt.
+- *(ci)* Move --no-fail-fast to nextest.toml config file.
+- Cargo nexttest --all is outdated.
+- *(ci)* Try alexandretrotel/todo-tree-action@v1.0.1.
+- *(ci)* Cargo nextest run.
 
 ### 💼 Other
 
@@ -36,6 +45,10 @@
 - Committing before rethink
 - Committing before navigation refactor
 - Making some changes to the config system to make other changes easy
+
+### 📚 Documentation
+
+- Add TODO.md
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -67,3 +80,9 @@
 - Upgrade codeql workflow.
 - Update create-pull-request to v7.
 - Update changelog workflow title.
+- Update changelog (#10)
+- Changelog workflow should have signed commits.
+- Add permissions block to workflows.
+- Use cargo-nextest for faster tests.
+- Add alexandretrotel/todo-tree-action. Runs on PRs.
+- Add lefthook, pre-commit. Fix formatting.
