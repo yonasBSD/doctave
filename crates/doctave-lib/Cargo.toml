@@ -13,7 +13,7 @@ colorsys = "0.7.3"
 crossbeam-channel = "0.5"
 doctave-markdown = { git = "https://github.com/yonasBSD/doctave-markdown" }
 elasticlunr-rs = { version = "3.0", default-features = false }
-handlebars = "6.3.2"
+handlebars = "6.4.0"
 http = "1.4"
 include_dir = "0.7.4"
 lazy_static = "1.5.0"
