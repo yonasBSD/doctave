@@ -7,7 +7,7 @@ license = "MIT"
 
 [dependencies]
 bunt = "0.2.9"
-clap = { version = "4.5.53", features = ["derive"] }
+clap = { version = "4.5.57", features = ["derive"] }
 doctave-lib = { path = "../doctave-lib" }
 
 # Binary target configuration
