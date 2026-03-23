@@ -142,7 +142,7 @@ jobs:
 
       - name: Add PR comment if check fails
         if: steps.cogcheck.outputs.exit_code != '0'
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: conventional-commits
           message: |
