@@ -86,3 +86,5 @@
 - Use cargo-nextest for faster tests.
 - Add alexandretrotel/todo-tree-action. Runs on PRs.
 - Add lefthook, pre-commit. Fix formatting.
+- Update changelog (#43)
+- Run changelog workflow every Sunday at midnight.
