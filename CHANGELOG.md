@@ -38,14 +38,6 @@
 - *(ci)* Try alexandretrotel/todo-tree-action@v1.0.1.
 - *(ci)* Cargo nextest run.
 
-### 💼 Other
-
-- Committing before a refactor
-- Progress on getting new styles up and running
-- Committing before rethink
-- Committing before navigation refactor
-- Making some changes to the config system to make other changes easy
-
 ### 📚 Documentation
 
 - Add TODO.md
@@ -86,3 +78,13 @@
 - Use cargo-nextest for faster tests.
 - Add alexandretrotel/todo-tree-action. Runs on PRs.
 - Add lefthook, pre-commit. Fix formatting.
+- Update changelog (#43)
+- Run changelog workflow every Sunday at midnight.
+
+### 💼 Other
+
+- Committing before a refactor
+- Progress on getting new styles up and running
+- Committing before rethink
+- Committing before navigation refactor
+- Making some changes to the config system to make other changes easy
